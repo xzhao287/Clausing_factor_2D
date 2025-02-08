@@ -1,0 +1,18 @@
+function clsn_test = clsn_wll(x0,y0,x,y,a1,b1,a2,b2)
+%CLSN_WLL Summary of this function goes here
+%   Detailed explanation goes here
+clsn_test = 1;
+
+    Da = a1-a2;
+    Db = b1-b2;
+    l0 = [Da Db]./sqrt(a1^2+a2^2);
+    n0 = [-Db Da]./sqrt(a1^2+a2^2);
+
+    if (ccwrcw(x,y,a1,b1,a2,b2) ==0)
+        clsn_test = 0;
+    elseif (ccwrcw(x,y,a1,b1,a2,b2)*ccwrcw(x0,y0,a1,b1,a2,b2)<0)
+        clsn_test = -1;
+    end
+
+end
+

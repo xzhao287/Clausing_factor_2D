@@ -2,10 +2,13 @@ import numpy as np
 
 class Seg:
     def __init__(self,
-                 start=np.zeros((2),dtype=float),
-                 end=np.zeros((2),dtype=float)):
+                 start=[-1,0],
+                 end=[1,0],
+                 stick=0.0):
         self.a = np.array(start, dtype=float)
         self.b = np.array(end, dtype=float)
+
+        self.sc = stick
 
 class Boundary:
     def __init__(self,
