@@ -1,4 +1,4 @@
-# Estimating Clausing factor in 2D
+# Simulating molecules colliding in a hole
 
 ## The concept and the background
 
@@ -6,11 +6,24 @@ Clausing factor, a factor defined in molecular flow regime, is the protion of ga
 
 ## The simulation
 
-## The future direction
+[](https://github.com/xzhao287/Clausing_factor_2D/blob/main/Clausing_factor_2D.gif)
+
+In this toy example simulation, we use the basic physics to simulate where molecules entering a hole end up—the distribution of the entering molecules along the wall surface. It generates gas molecules from above the tube and assigns them velocities in x and y directions following the Maxwell-Boltzmann distribution. When a molecules hits the walls in the hole, the simulator determines whether it sticks (disappear) or bounces (mirror reflection) using sticking coefficient, a parameter associated with the wall and, in reality, determined by the physio-chemical nature of the deposition surface. If a gas molecule gets out of the box above the hole, its velocity is pointing the wrong direction and it will not contribute to the sampling in anyway, so the simulator will regenerate a molecule to replace it.
+
+It may not make immediate sense that the molecules do not collide each other even though they appear so in the animation, but as we have pointed out in the background that we're simulating in the molecular flow regime, the molecules should in fact not collide. We're essentially running simulations for each individual molecules at the same time, and putting a bit more molecules in the box just to speed up the sampling.
+
+## Future directions
 
 ### The collision with walls
-### The diffusion along 
+
+Obviously, a molecule colliding with a surface does not just either stick or bounce. In fact, the collision of a gas molecules with a solid surface on which it can react (as in the case of chemical vapor deposition) has been a popular topic of physical chemistry for decades. A gas molecule can collide with the surface, barely interact with it, and then escape, with the most of its incoming kinetic energy and its outbound trajectory angled mostly well-above the surface (a grazing angle), or it can be adsorbed to the surface, then diffuse, or react, or escape again into the gas phase (following a more Maxwellian distribution). To capture this complicated picture, we need to introduce a more comprehensive way to determine the outcome of a collision.
+
+### The diffusion along the walls
+
+As we can see from the results, the distribution of gas dose along the wall is not uniform at all. For a better chemical deposition inside the wall, dose distribution with better uniformity is crucial. Fortunately, when the scale of microelectronics gets smaller, the surface diffusion within the hole will smooth out the deposition growth, and the diffusion from near the hole will also supply precussors, beside the direct inbound gas flow into the hole. To simulate this phenomenon, we need to takcle the challange to restrict the diffusion to the wall.
+
+### The Python and Jupyter Notebook version is under development
 
 ## References
 
-[^1]: [How is conductance in vacuum calculated?]([https://doi.org/10.1021/jp037992q](https://www.leybold.com/en-us/knowledge/vacuum-fundamentals/fundamental-physics-of-vacuum/how-to-calculate-vacuum-conductance))
+[^1]: [Foundations of Vacuum Science and Technology, Edited by James M. Lafferty, Chapter 2 Flow of gas through tubes and orifices](https://atomoptics-nas.uoregon.edu/~tbrown/files/strontium_vacuum_system/Research%20Papers/Livesey_mod.pdf)
