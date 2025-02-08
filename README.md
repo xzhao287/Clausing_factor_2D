@@ -6,7 +6,7 @@ Clausing factor, a factor defined in molecular flow regime, is the protion of ga
 
 ## The simulation
 
-[](https://github.com/xzhao287/Clausing_factor_2D/blob/main/Clausing_factor_2D.gif)
+![](https://github.com/xzhao287/Clausing_factor_2D/blob/main/Clausing_factor_2D.gif)
 
 In this toy example simulation, we use the basic physics to simulate where molecules entering a hole end up—the distribution of the entering molecules along the wall surface. It generates gas molecules from above the tube and assigns them velocities in x and y directions following the Maxwell-Boltzmann distribution. When a molecules hits the walls in the hole, the simulator determines whether it sticks (disappear) or bounces (mirror reflection) using sticking coefficient, a parameter associated with the wall and, in reality, determined by the physio-chemical nature of the deposition surface. If a gas molecule gets out of the box above the hole, its velocity is pointing the wrong direction and it will not contribute to the sampling in anyway, so the simulator will regenerate a molecule to replace it.
 
