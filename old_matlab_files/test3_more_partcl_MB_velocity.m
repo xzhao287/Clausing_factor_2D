@@ -34,7 +34,7 @@ if tube_enter > 0
     ratio_clausing = bdy(12,6)/tube_enter;
 end
 plot(bdy(:,1),bdy(:,2));
-xlim([-5 7])
+xlim([-5 9])
 ylim([-10 5])
 hold on
 
@@ -46,14 +46,23 @@ lgd.Location = 'southeast';
 
 for i = 1:N
      [p1.x, p1.y, p1.vx, p1.vy, p1.t] = trjppg(p.x(i),p.y(i),p.vx(i),p.vy(i),p.t(i),dt);
-      p1_tmax = T/20*rand;
+      p1_tmax = T/10*rand;
       if p.y(i) > 0 && p1.y < 0 && p1.x > 0 && p1.x < 1
           tube_enter = tube_enter + 1;
       end
       if p.y(i) < 0 && p1.y > 0 && p.x(i) > 0 && p.x(i) < 1
           tube_escaper = tube_escaper + 1;
       end
-    for b = 1:B
+       if (p1.y > 5) || (p1.y < 0 && (p1.x < -1 || p1.x > 3)) || (p1.x < -4 || p1.x > 8) || (p1.t > p1_tmax)
+
+        p1.x = rand*10.5-5.5;
+        p1.y = rand*5;
+        p1.vx = dis_generator(v,vMB_cum,1);
+        p1.vy = dis_generator(v,vMB_cum,1);
+        p1.t = 0;
+
+      end
+      for b = 1:B
         a1 = bdy(b,1);
         b1 = bdy(b,2);
         a2 = bdy(b,3);
@@ -77,27 +86,11 @@ for i = 1:N
             [l0x,l0y] = normlz_vct(seg_a,seg_b);
             [n0x,n0y] = normal_vct(seg_a,seg_b);
             [p1.vx,p1.vy] = bounce_v(p1.vx,p1.vy,l0x,l0y,n0x,n0y);
-                if (p1.y < 0 && (p1.x <0 || p1.x > 2)) || (p1.x < -5 || p1.x > 6)
-                    p1.x = rand*10.5-5.5;
-                    p1.y = rand*5;
-                    p1.vx = dis_generator(v,vMB_cum,1);
-                    p1.vy = dis_generator(v,vMB_cum,1);
-                    p1.t = 0;
-                end
+
             end
         end
-    end
-
-
-    if p1.t > p1_tmax
-
-        p1.x = rand*10.5-5.5;
-        p1.y = rand*5;
-        p1.vx = dis_generator(v,vMB_cum,1);
-        p1.vy = dis_generator(v,vMB_cum,1);
-        p1.t = 0;
-    end
-    
+       end
+   
     p.x(i) = p1.x;
     p.y(i) = p1.y;
     p.vx(i) = p1.vx;
