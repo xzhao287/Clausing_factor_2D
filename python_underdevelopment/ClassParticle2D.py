@@ -3,8 +3,8 @@ import numpy as np
 
 class Particle:
     def __init__(self,
-                 position=[0,0],
-                 velocity=[0,0],
+                 position=[0.,0.],
+                 velocity=[0.,0.],
                  mass: float=1.0, name: str='H',  index:int=0, sigma:float = 1) -> None:
 
         self.pos = np.array(position, dtype=float)
@@ -14,10 +14,10 @@ class Particle:
         self.n = index
         self.s = sigma # collision cross section for later particle interactions
 
-    # def prop(self):
-    #     '''propagation function, determine what'''
-    #     self.pos += self.dt*self.vel
-    #     return
+    def prop(self):
+        '''propagation function, determine what'''
+        self.pos += self.dt*self.vel
+        return
 
     # def reflect(self, seg: Seg):
     #     """
