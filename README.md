@@ -14,6 +14,23 @@ Inside the hole, the molecules collides with the walls and some will stick rando
 
 It may not make immediate sense that the molecules do not collide each other even though they appear to collide in the animation, but as we have pointed out in the background section that we're simulating in the molecular flow regime, the molecules should in fact not collide. We're essentially running many independent simulations for each molecule at the same time, and we can speed up the sampling by putting a bit more molecules in the box.
 
+### Conclusion
+
+#### A more sticky surface damages the uniformity of deposit flux distribution
+![](https://github.com/xzhao287/Clausing_factor_2D/blob/main/fig_sticking_coefficient_test.png)
+
+In this model, sticking coefficient is defined as the probability for a molecules to deposit (absorb and disappear) on the surface upon one collision. From the graph, we can conclude that a higher sticking coefficient causes more molecules to deposit near the top of the hole, where it takes less collisions for molecules to reach.
+
+#### Moderate aspect ratio slightly promotes the uniformity
+![](https://github.com/xzhao287/Clausing_factor_2D/blob/main/fig_aspect_ratio_test.png)
+
+Surprisingly, the aspect ratio is only mildly influential to the deposit flux distribution. The flux is more concentrated at the bottom and more tapered down the hole for a wide opening, while the flux is more monotonous with a sharper decrease down the hole for a narrow opening. A middleground aspect ratio of 5:1 seems to slightly promote the uniformity of the deposit flux distribution.
+
+#### Convergence time
+![](https://github.com/xzhao287/Clausing_factor_2D/blob/main/fig_convergence_time.png)
+
+In this simulation, it takes roughly 200 ns (10<sup>4</sup> steps) for statistics to converge on each surface segment and thus obtain a steady distribution. This behaviour seems to be consistent through out all runs in our simulation.
+
 ## Future directions
 
 ### The collision with walls
